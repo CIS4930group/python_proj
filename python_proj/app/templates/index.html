@@ -41,11 +41,15 @@ Please select 1 main dish, 1 side dish, and 1 vegetable, or select random for ea
               <option>random</option>
           </select>
     </div>
-    <button type="submit" value="submitted" name="submit1" class="btn btn-default">Go</button>
+      <button type="submit" value="submitted" name="submit1" class="btn btn-default">Go</button>
 	</form>
-  <!--<li> </li>
-  <li> Currency and Exchange Rates </li>
-  <li> Diplomatic Representation Contact Information </li>
-  <li> etc. </li> -->
 </ul>
+
+{% if info %}
+<br/>
+<dl class="dl-horizontal">
+    <dt>Recipe:&nbsp;</dt>
+    <a href="{{ info[0] }}"> {{ info[1] }}</a>
+{% endif %}
+
 {% endblock %}
