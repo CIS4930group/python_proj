@@ -1,55 +1,62 @@
-{% extends "base.html" %} 
+{% extends "base1.html" %}
 {% block content %}
-<div align="center">
-Please select 1 main dish, 1 side dish, and 1 vegetable, or select random for each category!
-</div>
- <br>
-<ul>
-	<form method="POST" action="">
-    <div class="form-inline" align="center">
-          <select name="maindish">
-              <option value="" disabled selected>Choose a main dish</option>
-              <option>chicken</option>
-              <option>beef</option>
-              <option>turkey</option>
-              <option>shrimp</option>
-              <option>salmon</option>
-              <option>tofu</option>
-              <option>pork</option>
-              <option>vegetarian</option>
-              <option>random</option>
-          </select>
-          <select name="sidedish">
-              <option value="" disabled selected>Choose a side dish</option>
-              <option>rice</option>
-              <option>potato</option>
-              <option>quinoa</option>
-              <option>pasta</option>
-              <option>sweet potato</option>
-              <option>black beans</option>
-              <option>baked beans</option>
-              <option>corn</option>
-              <option>random</option>
-          </select>
-          <select name="vegetable">
-              <option value="" disabled selected>Choose a vegetable</option>
-              <option>broccoli</option>
-              <option>green beans</option>
-              <option>peas</option>
-              <option>spinach</option>
-              <option>asparagus</option>
-              <option>kale</option>
-              <option>brussels sprouts</option>
-              <option>cauliflower</option>
-              <option>random</option>
-          </select>
-        </div>
-        <br>
-      <div class = "form-group" align="center">
-      <button type="submit" value="submitted" name="submit1" class="btn btn-default">Go</button>
-    </div>
-	</form>
-</ul>
+
+<div class="bg"></div>
+  <br>
+    <ul>
+      <form method="POST" action="">
+        <div class="jumbotron">
+            <h1>Easy Recipe Finder</h1>
+            <p class="lead"></p>
+            Select a main dish, a side dish, and a vegetable, or random for each category!
+            <ul>
+              <form class="form-inline" align="center">
+                <div class="form-group">
+                  <select name="maindish">
+                    <option value="" disabled selected>Choose a main dish</option>
+                    <option>chicken</option>
+                    <option>beef</option>
+                    <option>turkey</option>
+                    <option>shrimp</option>
+                    <option>salmon</option>
+                    <option>tofu</option>
+                    <option>pork</option>
+                    <option>vegetarian</option>
+                    <option>random</option>
+                  </select>
+                <select name="sidedish">
+                    <option value="" disabled selected>Choose a side dish</option>
+                    <option>rice</option>
+                    <option>potato</option>
+                    <option>quinoa</option>
+                    <option>pasta</option>
+                    <option>sweet potato</option>
+                    <option>black beans</option>
+                    <option>baked beans</option>
+                    <option>corn</option>
+                    <option>random</option>
+                </select>
+                <select name="vegetable">
+                    <option value="" disabled selected>Choose a vegetable</option>
+                    <option>broccoli</option>
+                    <option>green beans</option>
+                    <option>peas</option>
+                    <option>spinach</option>
+                    <option>asparagus</option>
+                    <option>kale</option>
+                    <option>brussels sprouts</option>
+                    <option>cauliflower</option>
+                    <option>random</option>
+                </select>
+              </div>
+            </form>
+            </ul>
+            <div class = "form-group" align="center">
+            <button type="submit" value="submitted" name="submit1" class="btn btn-info">Go</button>
+          </div>
+    	</form>
+    </ul>
+
 
 {% if info %}
 <br>
