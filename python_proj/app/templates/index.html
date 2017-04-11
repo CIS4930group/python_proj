@@ -1,9 +1,12 @@
 {% extends "base.html" %} 
 {% block content %}
+<div align="center">
 Please select 1 main dish, 1 side dish, and 1 vegetable, or select random for each category!
+</div>
+ <br>
 <ul>
-	<form class="form-inline" method="POST" action="">
-	<div class="form-group">
+	<form method="POST" action="">
+    <div class="form-inline" align="center">
           <select name="maindish">
               <option value="" disabled selected>Choose a main dish</option>
               <option>chicken</option>
@@ -17,7 +20,7 @@ Please select 1 main dish, 1 side dish, and 1 vegetable, or select random for ea
               <option>random</option>
           </select>
           <select name="sidedish">
-          	 <option value="" disabled selected>Choose a side dish</option>
+              <option value="" disabled selected>Choose a side dish</option>
               <option>rice</option>
               <option>potato</option>
               <option>quinoa</option>
@@ -29,7 +32,7 @@ Please select 1 main dish, 1 side dish, and 1 vegetable, or select random for ea
               <option>random</option>
           </select>
           <select name="vegetable">
-          	 <option value="" disabled selected>Choose a vegetable</option>
+              <option value="" disabled selected>Choose a vegetable</option>
               <option>broccoli</option>
               <option>green beans</option>
               <option>peas</option>
@@ -40,15 +43,18 @@ Please select 1 main dish, 1 side dish, and 1 vegetable, or select random for ea
               <option>cauliflower</option>
               <option>random</option>
           </select>
-    </div>
+        </div>
+        <br>
+      <div class = "form-group" align="center">
       <button type="submit" value="submitted" name="submit1" class="btn btn-default">Go</button>
+    </div>
 	</form>
 </ul>
 
 {% if info %}
-<br/>
-<dl class="dl-horizontal">
-    <dt>Recipe:&nbsp;</dt>
+<br>
+<dl align="center">
+      <dt>Recipe:&nbsp;</dt>
     <a href="{{ info[0] }}"> {{ info[1] }}</a>
 {% endif %}
 
