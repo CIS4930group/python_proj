@@ -5,12 +5,13 @@
   <br>
     <ul>
       <form method="POST" action="">
-        <div class="jumbotron">
-            <h1>Easy Recipe Finder</h1>
+        <div class="jumbotron" style="background-color:#7C6C77; padding:10px; margin-right:40px">
+            <h1 style="color:#FFC9B5">Ingredient Recipe Search</h1>
             <p class="lead"></p>
-            Select a main dish, a side dish, and a vegetable, or random for each category!
+            <b style="color:#004E64; font-size:160%; margin-left:40px">Select an item from each drop down</b>
             <ul>
-              <form class="form-inline" align="center">
+              <br>
+              <form class="form-group" align="center">
                 <div class="form-group">
                   <select name="maindish">
                     <option value="" disabled selected>Choose a main dish</option>
@@ -52,17 +53,16 @@
             </form>
             </ul>
             <div class = "form-group" align="center">
-            <button type="submit" value="submitted" name="submit1" class="btn btn-info">Go</button>
+            <button type="submit" value="submitted" name="submit1" class="btn btn-info" style="background-color:#546A76; border:#546A76; margin-left:40px">GO</button>
           </div>
-    	</form>
+      </form>
     </ul>
-
 
 {% if info %}
 <br>
 <dl align="center">
-      <dt>Recipe:&nbsp;</dt>
-    <a href="{{ info[0] }}"> {{ info[1] }}</a>
+      <dt style="color:#FFC9B5; font-size:200%; margin-left:50px">Recipe:&nbsp;</dt>
+    <a href="{{ info[0] }}" style="color:#004E64; font-size:200%; margin-left:50px"> {{ info[1] }}</a>
 {% endif %}
 
 {% endblock %}
