@@ -21,3 +21,11 @@ def index():
         elif request.form['random'] == 'action':
             print("Pressed this")
     return render_template('index.html', info=info)
+
+@app.route('/signin.html')
+def signup():
+    return render_template('signin.html')
+
+@app.route('/register.html')
+def register():
+    return render_template('register.html')
