@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="bg"></div>
+  <br>
+    <ul>
+      <form method="POST" action="">
+        <div class="jumbotron" style="background-color:#7C6C77; padding:10px; margin-right:40px">
+            <h1 style="color:#FFC9B5">Ingredient Recipe Search</h1>
+            <p class="lead"></p>
+            <b style="color:#004E64; font-size:160%; margin-left:40px">Select an item from each drop down</b>
+            <ul>
+              <br>
+              <form class="form-group" align="center">
+                <div class="form-group">
+                  <select name="maindish">
+                    <option value="" disabled selected>Choose a main dish</option>
+                    <option>chicken</option>
+                    <option>beef</option>
+                    <option>turkey</option>
+                    <option>shrimp</option>
+                    <option>salmon</option>
+                    <option>tofu</option>
+                    <option>pork</option>
+                    <option>vegetarian</option>
+                    <option>random</option>
+                  </select>
+                <select name="sidedish">
+                    <option value="" disabled selected>Choose a side dish</option>
+                    <option>rice</option>
+                    <option>potato</option>
+                    <option>quinoa</option>
+                    <option>pasta</option>
+                    <option>sweet potato</option>
+                    <option>black beans</option>
+                    <option>baked beans</option>
+                    <option>corn</option>
+                    <option>random</option>
+                </select>
+                <select name="vegetable">
+                    <option value="" disabled selected>Choose a vegetable</option>
+                    <option>broccoli</option>
+                    <option>green beans</option>
+                    <option>peas</option>
+                    <option>spinach</option>
+                    <option>asparagus</option>
+                    <option>kale</option>
+                    <option>brussels sprouts</option>
+                    <option>cauliflower</option>
+                    <option>random</option>
+                </select>
+              </div>
+            </form>
+            </ul>
+            <div class = "form-group" align="center">
+            <button type="submit" value="submitted" name="submit1" class="btn btn-info" style="background-color:#546A76; border:#546A76; margin-left:40px">GO</button>
+            <button type="button" value="submitted" name="submit2" class="btn btn-info" style="background-color:#546A76; border:#546A76; margin-right:40px">FAVORITE</button>
+          </div>
+      </form>
+    </ul>
+
+{% if info %}
+<br>
+<dl align="center">
+      <dt style="color:#FFC9B5; font-size:200%; margin-left:50px">Recipe:&nbsp;</dt>
+    <a href="{{ info[0] }}" style="color:#004E64; font-size:200%; margin-left:50px"> {{ info[1] }}</a>
+{% endif %}
+
+{% endblock %}
