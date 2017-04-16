@@ -1,4 +1,6 @@
-from flask import render_template, request, flash
+from flask import render_template, request, flash, make_response
+import requests
+import re
 from app import app
 from app.recipescraper import getFood
 
@@ -6,6 +8,11 @@ from app.recipescraper import getFood
 def index():
     info=[]
     if request.method == 'POST':
+
+     #   if request.form['submit2'] == 'submitted':
+     #       resp = make_response('')
+     #       resp.set_cookie(temps,temp2)
+
         if request.form['submit1'] == 'submitted':
             select = request.form.get('maindish')
             select2 = request.form.get('sidedish')
@@ -17,9 +24,21 @@ def index():
                 info.append(temps)
                 temp = temps.rsplit('/', 2)[-2]             #get name of recipe
                 temp2 = temp.replace("-", " ")
-                info.append(temp2.title())                  #make recipe name a title
+                temp2 = temp2.title()
+                if (temps[7]=='a'):
+                   page = requests.get(temps)
+                   link = re.search(r'itemprop="name">([^<]+)',page.text)
+                   if link:
+                      temp2 = link.group(1)
+
+                print("temps is ",temps)
+                print("temp2 is ",temp2)
+
+                 
+                info.append(temp2)                  #make recipe name a title
         elif request.form['random'] == 'action':
             print("Pressed this")
+
     return render_template('index.html', info=info)
 
 @app.route('/signin.html')

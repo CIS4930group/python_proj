@@ -5,7 +5,7 @@ import random
 
 def getFood(main, side, veg):
 	mains = ['chicken', 'beef', 'turkey', 'shrimp', 'salmon', 'tofu', 'pork', 'vegetarian']
-	sides =['rice', 'potatoe', 'quinoa', 'pasta', 'sweet potato', 'black beans', 'baked beans', 'corn']
+	sides =['rice', 'potato', 'quinoa', 'pasta', 'sweet potato', 'black beans', 'baked beans', 'corn']
 	vegs = ['broccoli', 'green beans', 'peas', 'spinach', 'asparagus', 'kale', 'brussels sprouts', 'cauliflower']
 	if main in mains:
 		mainD = main
