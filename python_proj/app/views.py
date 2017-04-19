@@ -48,13 +48,17 @@ def signin():
     if request.form['submit1'] == 'submitted':
       s = shelve.open('users.db')
       #checks if account has been created with the username being the key
-      if str(request.form.get('inputName'))in s['key1']:
-        #checks if the password input matched the username's password in the database
-        if s['key1'][request.form.get('inputName')] == str(request.form.get('inputPassword')):
-          print "sign in successful"
+      try:
+        if str(request.form.get('inputName'))in s['key1']:
+          #checks if the password input matched the username's password in the database
+          if s['key1'][request.form.get('inputName')] == str(request.form.get('inputPassword')):
+            print "sign in successful"
+          else:
+            print "Password is incorrect"
         else:
-          print "Password is incorrect"
-      else:
+          print "account not registered"
+      #runs if the database has not been created, and therefore, no accounts have been created
+      except KeyError:
         print "account not registered"
 
 
