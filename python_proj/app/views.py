@@ -49,8 +49,8 @@ def signup():
 def register():
   if request.method == 'POST':
     if request.form['submit1'] == 'submitted':
-      user = str(request.form.get('username'))
-      passw = str(request.form.get('password'))
+      user = str(request.form.get('inputName'))
+      passw = str(request.form.get('inputPassword'))
       message = storeUsers(user, passw)
       #posts status of account creation in terminal
       if(message == 'failed'):
