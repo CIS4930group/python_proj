@@ -9,8 +9,6 @@ from app.database import storeUsers
 def index():
     info=[]
     if request.method == 'POST':
-        print "hi"
-
      #   if request.form['submit2'] == 'submitted':
      #       resp = make_response('')
      #       resp.set_cookie(temps,temp2)
