@@ -1,6 +1,7 @@
 from flask import render_template, request, flash, make_response
 import requests
 import re
+import shelve
 from app import app
 from app.recipescraper import getFood
 from app.database import storeUsers
@@ -41,9 +42,24 @@ def index():
 
     return render_template('index.html', info=info)
 
-@app.route('/signin.html')
-def signup():
-    return render_template('signin.html')
+@app.route('/signin.html', methods=['GET', 'POST'])
+def signin():
+  if request.method == 'POST':
+    if request.form['submit1'] == 'submitted':
+      s = shelve.open('users.db')
+      #checks if account has been created with the username being the key
+      if str(request.form.get('inputName'))in s['key1']:
+        #checks if the password input matched the username's password in the database
+        if s['key1'][request.form.get('inputName')] == str(request.form.get('inputPassword')):
+          print "sign in successful"
+        else:
+          print "Password is incorrect"
+      else:
+        print "account not registered"
+
+
+
+  return render_template('signin.html')
 
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
