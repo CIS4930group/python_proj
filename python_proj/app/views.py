@@ -3,11 +3,13 @@ import requests
 import re
 from app import app
 from app.recipescraper import getFood
+from app.database import storeUsers
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     info=[]
     if request.method == 'POST':
+        print "hi"
 
      #   if request.form['submit2'] == 'submitted':
      #       resp = make_response('')
@@ -45,6 +47,18 @@ def index():
 def signup():
     return render_template('signin.html')
 
-@app.route('/register.html')
+@app.route('/register.html', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+  if request.method == 'POST':
+    if request.form['submit1'] == 'submitted':
+      user = str(request.form.get('username'))
+      passw = str(request.form.get('password'))
+      message = storeUsers(user, passw)
+      #posts status of account creation in terminal
+      if(message == 'failed'):
+        print "Username is already taken, try again"
+      else:
+        print "Account successfully created"
+
+
+  return render_template('register.html')
