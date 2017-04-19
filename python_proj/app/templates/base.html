@@ -1,21 +1,21 @@
-<html> 
+<html>
   <head>
-    <title>Recipe Search</title> 
+    <title>Recipe Search</title>
     <link rel="icon" href="{{ url_for('static', filename='cooks.png') }}" type="image/png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css">
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link href="../static/signup.css" rel="stylesheet">
   </head>
   <body style="background-color:#546A76">
     <div class="container">
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#" style="color:#004E64">Home</a>
+                    <li role="presentation" class="active"><a href="/" style="color:#004E64">Home</a>
+                    </li>
+                    <li role="presentation"><a href="register.html" style="color:#004E64">Sign Up</a>
                     </li>
                     <li role="presentation"><a href="signin.html" style="color:#004E64">Sign In</a>
-                    </li>
-                    <li role="presentation"><a href="#" style="color:#004E64">Favorites</a>
                     </li>
                 </ul>
             </nav>
