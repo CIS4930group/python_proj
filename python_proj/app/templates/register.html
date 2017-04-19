@@ -1,22 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="jumbotron col-md-8 col-md-offset-2 center" style="background-color:#7C6C77; padding:10px; margin-right:40px">
+        <h1 style="color:#FFC9B5">Ingredient Recipe Search</h1>
+        <form class="form-signin" action = "" method = "POST">
+          <label for="inputName" class="sr-only">Username</label>
+          <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Username" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
 
-<!DOCTYPE html>
-<a href="/"> Home </a> <br><br><br>
-<html>
-<head>
-</head>
+        <button type="submit" value="submitted" name="submit1" class="btn btn-lg btn-primary btn-block" style="background-color:#546A76; border:#546A76">Sign up</button>
+         <strong>Already have an account?</strong><br>
+         <a href="signin.html">Sign in here</a>
+      </form>
+      </div>
 
-<body style="background-color:#546A76">
-
-<form action = "" method = "POST">
-    <!--
-    First Name: <input type = "text" name = "first_name" placeholder = "First Name"><br>
-    Last Name: <input type = "text" name = "last name" placeholder = "Last Name"><br> 
-    -->
-    Username: <input type = "text" name = "username" placeholder = "Username"><br>
-    Password: <input type = "password" name = "password" placeholder = "Password"><br><br><br>
-    <Button type="submit" value="submitted" name="submit1"> Register </button> 
-</form>
-
-</body>
-
-</html>
+{% endblock %}
