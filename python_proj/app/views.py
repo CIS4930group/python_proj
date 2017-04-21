@@ -6,6 +6,8 @@ from app import app
 from app.recipescraper import getFood
 from app.database import storeUsers
 
+userLoggedIn = False
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     info=[]
@@ -49,9 +51,10 @@ def signin():
       s = shelve.open('users.db')
       #checks if account has been created with the username being the key
       try:
-        if str(request.form.get('inputName'))in s['key1']:
+        if str(request.form.get('inputName'))in s:
           #checks if the password input matched the username's password in the database
-          if s['key1'][request.form.get('inputName')] == str(request.form.get('inputPassword')):
+          if s[request.form.get('inputName')]['password'] == str(request.form.get('inputPassword')):
+            userLoggedIn = True
             print "sign in successful"
           else:
             print "Password is incorrect"
@@ -77,6 +80,7 @@ def register():
         print "Username is already taken, try again"
       else:
         print "Account successfully created"
+        userLoggedIn = True
 
 
   return render_template('register.html')
