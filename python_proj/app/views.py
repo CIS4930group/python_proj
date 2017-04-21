@@ -53,7 +53,7 @@ def signin():
       try:
         if str(request.form.get('inputName'))in s:
           #checks if the password input matched the username's password in the database
-          if s[request.form.get('inputName')]['password'] == str(request.form.get('inputPassword')):
+          if s[str(request.form.get('inputName'))]['password'] == str(request.form.get('inputPassword')):
             userLoggedIn = True
             print "sign in successful"
           else:
