@@ -2,7 +2,9 @@
 import shelve
 
 s = shelve.open('users.db')
-existing = s['key1']
+for user in s:
+	print user, s[user] 		#prints username, then password and favorites
+
 s.close()
 
-print existing
+
