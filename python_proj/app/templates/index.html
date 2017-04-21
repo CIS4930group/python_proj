@@ -4,7 +4,7 @@
 <div class="bg"></div>
   <br>
     <ul>
-      <form method="POST" action="">
+      <form method="POST" action="" name="form-name" value="form1">
         <div class="jumbotron" style="background-color:#7C6C77; padding:10px; margin-right:40px">
             <h1 style="color:#FFC9B5">Ingredient Recipe Search</h1>
             <p class="lead"></p>
@@ -54,11 +54,13 @@
             </ul>
             <div class = "form-group" align="center">
             <button type="submit" value="submitted" name="submit1" class="btn btn-info" style="background-color:#546A76; border:#546A76; margin-left:40px">GO</button>
-            <button type="button" value="submitted" name="submit2" class="btn btn-info" style="background-color:#546A76; border:#546A76; margin-right:40px">FAVORITE</button>
           </div>
       </form>
     </ul>
-
+<form align="center" class="form-group">
+    <input type="hidden" name="form-name" value="form2">
+    <button type="button" value="submitted" name="submit2" class="btn btn-info" style="background-color:#FFC9B5; color:#004E64; border:#546A76; margin-left:40px">FAVORITE</button>
+</form>
 {% if info %}
 <br>
 <dl align="center">
