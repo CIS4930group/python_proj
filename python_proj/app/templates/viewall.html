@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if faves %}
+{% for fave in faves %}
+<p>
+<a href="{{ fave[0] }}" style="color:#FFC9B5; font-size:200%; margin-left:400px"> {{ fave[1] }}</a>
+</p>
+{% endfor %}
+{% elif noRec %}
+ <div class="myclass" style="top:50%; color:#FFC9B5; font-size:200%; margin-left:400px; margin-top:50px">{{ noRec }}</div>
+{% else %}
+ <div class="myclass" style="top:50%; color:#FFC9B5; font-size:200%; margin-left:400px; margin-top:50px">Please log in before viewing this page</div>
+{% endif %}
+{% endblock %}
