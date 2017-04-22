@@ -26,11 +26,6 @@ def index():
                        message = storeFav(currentUser,favorite)
                        print message
              '''
-
-
-
-
-
              if request.form['submit1'] == 'submitted':
                 print("go pressed")
                 select = request.form.get('maindish')
@@ -84,9 +79,9 @@ def signin():
             #return render_template('index.html')
             return redirect(url_for('index'))
           else:
-            print "Password is incorrect"
+            print "Password is incorrect" #make dialog box
         else:
-          print "account not registered"
+          print "account not registered" #make dialog box
       #runs if the database has not been created, and therefore, no accounts have been created
       except KeyError:
         print "account not registered"
@@ -106,26 +101,27 @@ def register():
       message = storeUsers(user, passw)
       #posts status of account creation in terminal
       if(message == 'failed'):
-        print "Username is already taken, try again"
+        print "Username is already taken, try again" #make dialog box
       else:
-        print "Account successfully created"
+        print "Account successfully created"  #doesnt need dialog, redirects when it's created
         global userLoggedIn
         userLoggedIn = True
         global currentUser
         currentUser = user
-	return redirect(url_for('index'))
+        return redirect(url_for('index'))
 
   return render_template('register.html')
 
 
-@app.route('/favorites.html', methods=['GET', 'POST'])
+@app.route('/viewall.html', methods=['GET', 'POST'])
 def favorites():  
   #if request.method == 'POST':
-
+    noRec = ""
     if userLoggedIn == False:
-      return redirect(url_for('signin'))
-
-    faves = getFavs(currentUser)
-    print(faves)
-    return render_template('favorites.html',faves=faves) 
-
+      return render_template('viewall.html') 
+    else:
+      faves = getFavs(currentUser)
+      if len(faves) == 0:
+        noRec = "No recipes searched yet"
+      print(faves)
+      return render_template('viewall.html',faves=faves, noRec=noRec) 
