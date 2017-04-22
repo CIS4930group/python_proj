@@ -1,4 +1,6 @@
 import shelve
+import re
+import requests
 
 def storeUsers(user, passw):
 	#tries to add to the DB if it exists
@@ -20,3 +22,36 @@ def storeUsers(user, passw):
 
 	s.close()
 
+def storeFav(user, fav):
+        try:
+                print "username: ",user
+                s = shelve.open('users.db', writeback = True)
+                favList = s[user]['favorites']
+                favList.append(fav)
+                s[user]['favorites'] = favList
+                print("favs are ",s[user]['favorites'])
+                s.close()
+                print "success"
+        except:
+                print "failure"
+
+def getFavs(user):
+       s = shelve.open('users.db', writeback = True)
+       favList = s[user]['favorites']
+       fav = [("","")]
+       for f in favList:
+           temp = f.rsplit('/', 2)[-2]             #get name of recipe
+           temp2 = temp.replace("-", " ")
+           temp2 = temp2.title()
+           if (f[7]=='a'):
+              page = requests.get(f)
+              link = re.search(r'itemprop="name">([^<]+)',page.text)
+              if link:
+                 temp2 = link.group(1)        
+
+           tup = (f,temp2)
+           fav.append(tup)
+ 
+       s.close()
+       fav.pop(0)
+       return fav
