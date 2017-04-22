@@ -57,15 +57,12 @@
           </div>
       </form>
     </ul>
-<form align="center" class="form-group">
-    <input type="hidden" name="form-name" value="form2">
-    <button type="button" value="faved" name="submit1" class="btn btn-info" style="background-color:#FFC9B5; color:#004E64; border:#546A76; margin-left:40px">FAVORITE</button>
-</form>
 {% if info %}
 <br>
 <dl align="center">
-      <dt style="color:#FFC9B5; font-size:200%; margin-left:50px">Recipe:&nbsp;</dt>
+    <dt style="color:#FFC9B5; font-size:200%; margin-left:50px">Recipe:&nbsp;</dt>
     <a href="{{ info[0] }}" style="color:#004E64; font-size:200%; margin-left:50px"> {{ info[1] }}</a>
+</dl>
 {% endif %}
 
 {% endblock %}
