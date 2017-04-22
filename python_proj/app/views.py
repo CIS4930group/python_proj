@@ -9,23 +9,15 @@ from app.database import storeUsers, storeFav, getFavs
 
 userLoggedIn = False
 currentUser = ""
+
+@app.context_processor
+def addUser():
+  return dict(user=currentUser)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
         info=[]
         if request.method == 'POST':
-             '''
-             if request.form['submit1'] == 'faved':
-                 print("faved pressed")
-                 s = shelve.open('users.db')
-                 if userLoggedIn:
-                    favorite = ""
-                    #favorite = str(request.form.get('info'))
-                    print favorite
-                    if favorite!="":
-                       print(currentUser)
-                       message = storeFav(currentUser,favorite)
-                       print message
-             '''
              if request.form['submit1'] == 'submitted':
                 print("go pressed")
                 select = request.form.get('maindish')
@@ -115,13 +107,24 @@ def register():
 
 @app.route('/viewall.html', methods=['GET', 'POST'])
 def favorites():  
-  #if request.method == 'POST':
     noRec = ""
+    global userLoggedIn
     if userLoggedIn == False:
-      return render_template('viewall.html') 
+      return render_template('viewall.html', userLoggedIn=userLoggedIn) 
     else:
       faves = getFavs(currentUser)
       if len(faves) == 0:
         noRec = "No recipes searched yet"
       print(faves)
-      return render_template('viewall.html',faves=faves, noRec=noRec) 
+      return render_template('viewall.html',faves=faves, noRec=noRec, userLoggedIn=userLoggedIn) 
+
+@app.route('/signout.html', methods=['GET', 'POST'])
+def signout():
+    if request.method == 'POST':
+      if request.form['submit4'] == 'submitted':
+        global userLoggedIn
+        userLoggedIn = False
+        global currentUser
+        currentUser = ""
+        return redirect(url_for('index'))
+    return render_template('signout.html')
