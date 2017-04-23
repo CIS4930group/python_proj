@@ -11,6 +11,12 @@
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
+                  {% if user %}
+                    <li role="presentation" class="active"><a href="/" style="color:#004E64; font-weight:bold">Home</a>
+                    </li>
+                    <li role="presentation"><a href="recent.html" style="color:#004E64; font-weight:bold">Recents</a>
+                    </li>
+                    {% else %}
                     <li role="presentation" class="active"><a href="/" style="color:#004E64; font-weight:bold">Home</a>
                     </li>
                     <li role="presentation"><a href="register.html" style="color:#004E64; font-weight:bold">Sign Up</a>
@@ -19,6 +25,7 @@
                     </li>
                     <li role="presentation"><a href="recent.html" style="color:#004E64; font-weight:bold">Recents</a>
                     </li>
+                    {% endif %}
                 </ul>
                 {% if user %}
                     <a href="signout.html" title="Click to sign out." style="color:#004E64; font-weight:bold">Hello, {{ user }}!</a>
