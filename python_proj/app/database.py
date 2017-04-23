@@ -15,7 +15,7 @@ def storeUsers(user, passw):
 
 	#creates the db if it does not already exist
 	except KeyError:
-		favList = []
+		favList = [] #25 most recent recipes searched
 		s = shelve.open('users.db')
 		s[user] = {'password': passw, 'favorites': favList}
 
@@ -27,7 +27,16 @@ def storeFav(user, fav):
                 print "username: ",user
                 s = shelve.open('users.db', writeback = True)
                 favList = s[user]['favorites']
-                favList.append(fav)
+                #prevents duplicates
+                if fav in favList:
+                  favList.remove(fav)
+                  favlist.append(fav)
+                #saves only the most recent 25 recipes. Printed oldest to newest
+                if (len(favList) < 25):
+                  favList.append(fav)
+                else:
+                  favList.append(fav)
+                  favList.pop(0)
                 s[user]['favorites'] = favList
                 print("favs are ",s[user]['favorites'])
                 s.close()
