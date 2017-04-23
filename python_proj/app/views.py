@@ -100,17 +100,17 @@ def register():
   return render_template('register.html', mess=mess)
 
 
-@app.route('/viewall.html', methods=['GET', 'POST'])
+@app.route('/recent.html', methods=['GET', 'POST'])
 def favorites():  
     noRec = ""
     global userLoggedIn
     if userLoggedIn == False:
-      return render_template('viewall.html', userLoggedIn=userLoggedIn) 
+      return render_template('recent.html', userLoggedIn=userLoggedIn) 
     else:
       faves = getFavs(currentUser)
       if len(faves) == 0:
         noRec = "No recipes searched yet"
-      return render_template('viewall.html',faves=faves, noRec=noRec, userLoggedIn=userLoggedIn) 
+      return render_template('recent.html',faves=faves, noRec=noRec, userLoggedIn=userLoggedIn) 
 
 @app.route('/signout.html', methods=['GET', 'POST'])
 def signout():
