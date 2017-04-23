@@ -4,6 +4,7 @@
 {% if faves and userLoggedIn %}
 {% for fave in faves %}
 <p>
+<h1 style="color:#FFC9B5; font-size:200%; margin-left:400px">25 Most Recent Recipes</h1>
 <a href="{{ fave[0] }}" style="color:#FFC9B5; font-size:200%; margin-left:400px"> {{ fave[1] }}</a>
 </p>
 {% endfor %}
