@@ -12,6 +12,11 @@
          <strong>Don't have an account?</strong><br>
          <a href="register.html" style="color:#004E64">Sign up here</a>
       </form>
+      {% if acctm %}
+      <div class="myclass" style="top:50%; color:#FFC9B5; font-size:200%">{{ acctm }}</div>
+      {% elif passwordm %}
+      <div class="myclass" style="top:50%; color:#FFC9B5; font-size:200%">{{ passwordm }}</div>
+      {% endif %}
       </div>
 
 {% endblock %}
