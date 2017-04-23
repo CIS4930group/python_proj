@@ -12,6 +12,9 @@
          <strong>Already have an account?</strong><br>
          <a href="signin.html" style="color:#004E64">Sign in here</a>
       </form>
+      {% if mess %}
+       <div class="myclass" style="top:50%; color:#FFC9B5; font-size:200%">{{ mess }}</div>
+      {% endif %}
       </div>
 
 {% endblock %}
