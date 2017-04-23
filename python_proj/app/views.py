@@ -16,44 +16,42 @@ def addUser():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-        info=[]
-        if request.method == 'POST':
-             if request.form['submit1'] == 'submitted':
-                print("go pressed")
-                select = request.form.get('maindish')
-                select2 = request.form.get('sidedish')
-                select3 = request.form.get('vegetable')
-                if not select or not select2 or not select3:    #make sure the user actually selected something
-                    info=[]
-                else:
-                    temps = getFood(select, select2, select3)   #get url or string
-                    info.append(temps)
-                    temp = temps.rsplit('/', 2)[-2]             #get name of recipe
-                    temp2 = temp.replace("-", " ")
-                    temp2 = temp2.title()
-                    if (temps[7]=='a'):
-                       page = requests.get(temps)
-                       link = re.search(r'itemprop="name">([^<]+)',page.text)
-                       if link:
-                          temp2 = link.group(1)
+  info=[]
+  if request.method == 'POST':
+   if request.form['submit1'] == 'submitted':
+      print("go pressed")
+      select = request.form.get('maindish')
+      select2 = request.form.get('sidedish')
+      select3 = request.form.get('vegetable')
+      if not select or not select2 or not select3:    #make sure the user actually selected something
+          info=[]
+      else:
+        temps = getFood(select, select2, select3)   #get url or string
+        info.append(temps)
+        temp = temps.rsplit('/', 2)[-2]             #get name of recipe
+        temp2 = temp.replace("-", " ")
+        temp2 = temp2.title()
+        if (temps[7]=='a'):
+           page = requests.get(temps)
+           link = re.search(r'itemprop="name">([^<]+)',page.text)
+           if link:
+              temp2 = link.group(1)
 
-                    print("temps is ",temps)
-                    print("temp2 is ",temp2)
-                    temp3 = str(temps)
-                    if currentUser!="":
-                       message = storeFav(currentUser,temp3)
-                    else:
-                       print "not logged in"
-                 
-                    info.append(temp2)                  #make recipe name a title
-             elif request.form['random'] == 'action':
-                print("Pressed this")
-
-        
-        return render_template('index.html', info=info)
+        print("temps is ",temps)
+        print("temp2 is ",temp2)
+        temp3 = str(temps)
+        if currentUser!="":
+           message = storeFav(currentUser,temp3)
+        else:
+           print "not logged in"
+     
+        info.append(temp2)      
+  return render_template('index.html', info=info)
 
 @app.route('/signin.html', methods=['GET', 'POST'])
 def signin():
+  passwordm=""
+  acctm=""
   if request.method == 'POST':
     if request.form['submit2'] == 'submitted':
       s = shelve.open('users.db')
@@ -66,26 +64,23 @@ def signin():
             userLoggedIn = True
             global currentUser
             currentUser = str(request.form.get('inputName'))
-            print "user is "+str(currentUser)+"."
-            print "sign in successful"
-            #return render_template('index.html')
             return redirect(url_for('index'))
           else:
-            print "Password is incorrect" #make dialog box
+            passwordm = "Password was not correct. Please try again."
+            return render_template('signin.html', passwordm=passwordm, acctm=acctm)
         else:
-          print "account not registered" #make dialog box
+          acctm = "Please create an account before logging in."
+          return render_template('signin.html', passwordm=passwordm, acctm=acctm)
       #runs if the database has not been created, and therefore, no accounts have been created
       except KeyError:
         print "account not registered"
-
-
-
-  return render_template('signin.html')
+  return render_template('signin.html', passwordm=passwordm, acctm=acctm)
 
 
 
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
+  mess = ""
   if request.method == 'POST':
     if request.form['submit3'] == 'submitted':
       user = str(request.form.get('inputName'))
@@ -93,16 +88,16 @@ def register():
       message = storeUsers(user, passw)
       #posts status of account creation in terminal
       if(message == 'failed'):
-        print "Username is already taken, try again" #make dialog box
+        mess = "Username is already taken, try again."
+        return render_template('register.html', mess=mess)
       else:
-        print "Account successfully created"  #doesnt need dialog, redirects when it's created
         global userLoggedIn
+        mess = ""
         userLoggedIn = True
         global currentUser
         currentUser = user
         return redirect(url_for('index'))
-
-  return render_template('register.html')
+  return render_template('register.html', mess=mess)
 
 
 @app.route('/viewall.html', methods=['GET', 'POST'])
@@ -115,16 +110,15 @@ def favorites():
       faves = getFavs(currentUser)
       if len(faves) == 0:
         noRec = "No recipes searched yet"
-      print(faves)
       return render_template('viewall.html',faves=faves, noRec=noRec, userLoggedIn=userLoggedIn) 
 
 @app.route('/signout.html', methods=['GET', 'POST'])
 def signout():
-    if request.method == 'POST':
-      if request.form['submit4'] == 'submitted':
-        global userLoggedIn
-        userLoggedIn = False
-        global currentUser
-        currentUser = ""
-        return redirect(url_for('index'))
-    return render_template('signout.html')
+  if request.method == 'POST':
+    if request.form['submit4'] == 'submitted':
+      global userLoggedIn
+      userLoggedIn = False
+      global currentUser
+      currentUser = ""
+      return redirect(url_for('index'))
+  return render_template('signout.html')
